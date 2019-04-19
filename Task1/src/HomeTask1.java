@@ -55,8 +55,8 @@ public class HomeTask1 {
         
     }
 
-    private static void method1(int index1, int index2, Object... a) {
-        Object temp = a[index2];
+    private static <T> void method1(int index1, int index2, T[] a) {
+        T temp = a[index2];
         a[index2] = a[index1];
         a[index1] = temp;
     }
