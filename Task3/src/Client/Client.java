@@ -58,7 +58,7 @@ public class Client extends JFrame {
 
     private FileInputStream fis;
     private FileOutputStream fos;
-    
+
     public Client(String username) throws HeadlessException {
         try {
             clientSocket = new Socket(SERVER_HOST, SERVER_PORT);
@@ -109,12 +109,19 @@ public class Client extends JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        int size = (lines.size() > 100) ? lines.size() - 100 : 0; 
-        for (int i = size; i < lines.size(); i++){
+
+        int size = (lines.size() > 100) ? lines.size() - 100 : 0;
+        for (int i = size; i < lines.size(); i++) {
             jtaAreaMsg.append(lines.get(i) + "\n");
         }
-       
+
+        try {
+            br.close();
+            fis.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         jtfMsg.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
